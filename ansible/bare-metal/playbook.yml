@@ -26,3 +26,8 @@
         name: default
         autostart: true
         state: active
+
+    - name: Load vhost kernel module
+      community.general.modprobe:
+        name: vhost
+        state: present
