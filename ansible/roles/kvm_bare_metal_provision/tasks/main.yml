@@ -1,0 +1,32 @@
+---
+- name: Ensure all packages are up to date
+  ansible.builtin.apt:
+    name: "*"
+    state: latest
+
+- name: Install packages necessary for kvm/qemu
+  ansible.builtin.apt:
+    pkg:
+      - python3-lxml
+      - qemu-kvm
+      - libvirt-clients
+      - libvirt-daemon-system
+      - bridge-utils
+      - virtinst
+      - libvirt-daemon
+
+- name: Enable default network
+  community.libvirt.virt_net:
+    name: default
+    autostart: true
+    state: active
+
+- name: Load vhost kernel module
+  community.general.modprobe:
+    name: vhost
+    state: present
+
+- name: Load vhost_net kernel module
+  community.general.modprobe:
+    name: vhost_net
+    state: present

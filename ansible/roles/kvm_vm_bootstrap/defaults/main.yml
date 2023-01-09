@@ -1,0 +1,13 @@
+---
+# defaults file for kvm_bare_metal_provision
+
+base_image_name: AlmaLinux-9-GenericCloud-9.1-20221118.x86_64.qcow2
+base_image_url: https://repo.almalinux.org/almalinux/9/cloud/x86_64/images/{{ base_image_name }}
+libvirt_pool_dir: "/var/lib/libvirt/images"
+vm_name: alma-91-dev
+vm_vcpus: 2
+vm_ram_mb: 2048
+vm_net: default
+vm_root_pass: test123
+cleanup_tmp: no
+ssh_key: /root/.ssh/id_rsa.pub

@@ -1,0 +1,9 @@
+---
+- name: Initial node bootstrap
+  hosts: localhost
+  become: yes
+
+  tasks:
+    - name: KVM provisioning on bare metal
+      include_role:
+        name: kvm_bare_metal_provision
