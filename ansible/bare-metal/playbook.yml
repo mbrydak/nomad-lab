@@ -13,6 +13,7 @@
     - name: Install packages necessary for kvm/qemu
       ansible.builtin.apt:
         pkg:
+          - python3-lxml
           - qemu-kvm
           - libvirt-clients
           - libvirt-daemon-system
