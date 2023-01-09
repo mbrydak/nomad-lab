@@ -1,0 +1,20 @@
+---
+- name: Basic bare-metal host provisioning
+  hosts: localhost
+  remote_user: root
+
+  tasks:
+    - name: Ensure all packages are up to date
+      ansible.builtin.apt:
+        name: "*"
+        state: latest
+
+    - name: Make virtualization a thing!
+      ansible.builtin.apt:
+        pkg:
+          - qemu-kvm
+          - libvirt-clients
+          - libvirt-daemon-system
+          - bridge-utils
+          - virtinst
+          - libvirt-daemon

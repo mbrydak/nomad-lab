@@ -1,2 +1,2 @@
 # nomad-lab
-AWS Lab with Nomad
+Homelab setup powered by Nomad
