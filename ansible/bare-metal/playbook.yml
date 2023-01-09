@@ -10,7 +10,7 @@
         name: "*"
         state: latest
 
-    - name: Make virtualization a thing!
+    - name: Install packages necessary for kvm/qemu
       ansible.builtin.apt:
         pkg:
           - qemu-kvm
@@ -19,3 +19,9 @@
           - bridge-utils
           - virtinst
           - libvirt-daemon
+
+    - name: Enable default network
+      community.libvirt.virt_net:
+        name: default
+        autostart: true
+        state: active
