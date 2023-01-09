@@ -2,6 +2,7 @@
 - name: Basic bare-metal host provisioning
   hosts: localhost
   remote_user: root
+  become: true
 
   tasks:
     - name: Ensure all packages are up to date
