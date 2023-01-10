@@ -1,7 +1,7 @@
 ---
 - name: Initial node bootstrap
   hosts: localhost
-  become: yes
+  become: true
 
   tasks:
     - name: KVM provisioning on bare metal
