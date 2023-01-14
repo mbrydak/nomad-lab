@@ -1,0 +1,16 @@
+---
+ - name: "Playbook to test the inventory_hostname and ansible_hostname"
+   hosts: all
+   become: yes
+   remote_user: minion
+   become_user: root
+   gather_facts: true
+   tasks:
+
+    - name: What is my inventory_hostname
+      debug: var=hostname
+
+    - name: set my hostname
+      hostname:
+        name: '{{ hostname }}'
+        use: systemd

@@ -1,0 +1,30 @@
+---
+ - name: "Playbook to install consul"
+   hosts: consul
+   become: yes
+   remote_user: minion
+   become_user: root
+   gather_facts: true
+   tasks:
+
+    - name: Add Hashicorp apt key
+      apt_key:
+        url: https://apt.releases.hashicorp.com/gpg
+        state: present
+
+    - name: Add Hashicorp repo
+      apt_repository:
+        repo: deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+        state: present
+        filename: hashicorp
+
+    - name: Add Hashicorp repo
+      apt_repository:
+        repo: deb https://apt.releases.hashicorp.com {{ ansible_distribution_release }} main
+        state: present
+        filename: hashicorp
+
+    - name: Install consul
+      apt:
+        name: consul
+        state: present

@@ -1,0 +1,26 @@
+---
+ - name: "SET DNS ON CONSUL AND NOMAD SERVERS"
+   hosts: nomad:consul
+   become: yes
+   remote_user: minion
+   become_user: root
+   gather_facts: true
+   tasks:
+
+    - name: disable systemd resolved
+      systemd:
+        state: stopped
+        enabled: false
+        name: systemd-resolved
+
+    - name: remove resolvconf remains from /etc/resolv.conf
+      lineinfile:
+        path: /etc/resolv.conf
+        search_string: "nameserver 127.0.0.53"
+        state: absent
+
+    - name: set pihole as default dns
+      lineinfile:
+        path: /etc/resolv.conf
+        line: "nameserver 192.168.1.27"
+        state: present
