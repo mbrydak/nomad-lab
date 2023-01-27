@@ -1,6 +1,6 @@
 ---
  - name: "Playbook to install consul"
-   hosts: consul-server
+   hosts: consul-client
    become: yes
    remote_user: minion
    become_user: root

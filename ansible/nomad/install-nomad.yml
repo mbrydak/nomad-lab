@@ -1,6 +1,6 @@
 ---
- - name: "Playbook to install consul"
-   hosts: consul-server
+ - name: "Playbook to install nomad"
+   hosts: nomad
    become: yes
    remote_user: minion
    become_user: root
@@ -18,7 +18,7 @@
         state: present
         filename: hashicorp
 
-    - name: Install consul
+    - name: Install nomad
       apt:
-        name: consul
+        name: nomad
         state: present

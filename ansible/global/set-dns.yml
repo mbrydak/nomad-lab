@@ -13,11 +13,19 @@
         enabled: false
         name: systemd-resolved
 
-    - name: remove resolvconf remains from /etc/resolv.conf
-      lineinfile:
+    - name: Remove systemd resolv.conf remains
+      ansible.builtin.file:
         path: /etc/resolv.conf
-        search_string: "nameserver 127.0.0.53"
         state: absent
+        owner: root
+        group: root
+
+    - name: Ensure /etc/resolv.conf is present and is a file
+      ansible.builtin.file:
+        path: /etc/resolv.conf
+        state: touch
+        owner: root
+        group: root
 
     - name: set pihole as default dns
       lineinfile:

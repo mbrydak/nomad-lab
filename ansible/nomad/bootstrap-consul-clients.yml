@@ -1,0 +1,22 @@
+---
+ - name: "Playbook to configure consul"
+   hosts: consul-clients
+   become: yes
+   remote_user: minion
+   become_user: root
+   gather_facts: true
+   tasks:
+
+    - name: Copy source consul config
+      ansible.builtin.copy:
+        src: ./templates/consul-client-secret.hcl
+        dest: /etc/consul.d/consul.hcl
+        owner: consul
+        group: consul
+        decrypt: true
+        mode: '0644'
+    - name: restart consul service on servers
+      service:
+        name: consul
+        state: restarted
+        enabled: true
