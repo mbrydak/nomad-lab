@@ -1,3 +1,3 @@
 ./ansible/nomad/templates/consul-client.hcl
 ./ansible/consul/templates/consul.hcl
-
+./ansible/nomad/templates/consul-client.hcl
