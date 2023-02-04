@@ -1,0 +1,22 @@
+---
+ - name: "Playbook to configure nomad server"
+   hosts: nomad-client
+   become: yes
+   remote_user: minion
+   become_user: root
+   gather_facts: true
+   tasks:
+
+    - name: Copy source consul config
+      ansible.builtin.copy:
+        src: ./templates/nomad-server.hcl
+        dest: /etc/nomad.d/nomad.hcl
+        owner: nomad
+        group: nomad
+        decrypt: true
+        mode: '0644'
+    - name: restart nomad service on servers
+      service:
+        name: nomad
+        state: restarted
+        enabled: true
