@@ -32,3 +32,11 @@
         path: /etc/resolv.conf
         line: "nameserver 192.168.1.27"
         state: present
+
+    - ansible.builtin.template:
+        src: templates/00-installer-config.yaml
+        dest: /etc/netplan/00-installer-config.yaml
+
+    - name: run netplan apply
+      shell:
+        cmd: sudo netplan apply
